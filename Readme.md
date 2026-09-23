@@ -27,48 +27,51 @@ This script builds a simple **live media data pipeline** right inside the Window
 ### 1. Set Up the Package Manager
 Open **PowerShell** and install **Scoop** (the developer-focused repository manager for Windows):
 
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+iwr -useb get.scoop.sh | iex
+```
+### 2. Install the Required Tools
+Open yoCommand Prompt (cmd.exe) (cmd.exe)** and install the 32-bit compatible tools:
+
+```
+scoop install yt-dlp mplayer
+```
+
+*Note: Make sure you aNode.js **Node.js** installed on your Windows system to handle background decryption.*
+
+### 3. Setup the Shortcut Script
+1. Create a text file in your user directory (C:\Users\YOUR_USERNAME\) and name it play.bat.
+2. Open it with any text editor and paste the following code:
+
+```
 @echo off
-setlocal enabledelayedexpansion
+yt-dlp "ytsearch1:%*" -f ba --js-runtimes node -o - | "%USERPROFILE%\scoop\apps\mplayer\current\mplayer.exe" -cache 8192 -
+```
+## How to Use It
 
-:: 1. Clear screen and show a clean loading message
-cls
-echo [Searching YouTube for: %*...]
-:: 2. Fetch metadata quietly behind the scenes
-yt-dlp "ytsearch5:%*" --print "%%(title)s [%%(duration_string)s] | %%(id)s" --js-runtimes node --quiet > %TEMP%\yt_raw.txt
+Open your terminal from anywhere and run the script by typing play followed by any song name, artist, or album keyword:
 
-cls
-echo ======================================================================
-echo                          CHOOSE A TRACK                              
-echo ======================================================================
-echo.
+```
+play beatles don't let me down
+```
 
-:: 3. Build the minimal list layout
-set count=1
-for /f "tokens=1,2 delims=|" %%A in (%TEMP%\yt_raw.txt) do (
-    set "line=%%A"
-    set "id=%%B"
-    for /f "tokens=*" %%X in ("!id!") do set "id=%%X"
-    set "track_!count!=!id!"
-    echo  [!count!] !line!
-    set /a count+=1
-)
-echo.
-echo ======================================================================
-set /p choice=" Enter song number to play: "set "chosen_id=!track_%choice%!"
-if "!chosen_id!"=="" (
-    echo [!] Invalid selection. Exiting.
-    exit /b
-)
-:: 4. Get the direct streaming link using yt-dlp quietly
-cls
-echo [Loading audio stream...]
-for /f "delims=" %%I in ('yt-dlp --get-url -f ba --js-runtimes node "!chosen_id!"') do set "stream_url=%%I"
-:: 5. Launch audio streaming with native status reporting enabled
-cls
-echo ======================================================================
-echo  Now Playing: Track #%choice%
-echo  Controls: [Space] Pause/Play  ^|  [9] Vol Down  ^|  [0] Vol Up  ^|  [Q] Exit
-echo ======================================================================
-echo.
-C:\Users\Rith\scoop\apps\mplayer\current\mplayer.exe -cache 8192 -msglevel statusline=5:all=0 "!stream_url!"
-endlocal
+ 
+
+
+### Live Keyboard Controls
+While the track is playing natively inside your console, click on the terminal window and use these sSpacebar:*Spacebar:** Pause / Resume9:ack
+* **9:** Turn Vo0:own
+* **0:** Turn q / Esc:**q / Esc:** Stop playing and return to the prompt
+
+
+
+
+
+
+
+
+
+
+
+
