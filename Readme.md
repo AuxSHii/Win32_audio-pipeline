@@ -43,13 +43,18 @@ scoop install yt-dlp mplayer
 *Note: Make sure you aNode.js **Node.js** installed on your Windows system to handle background decryption.*
 
 ### 3. Setup the Shortcut Script
-1. Create a text file in your user directory (C:\Users\YOUR_USERNAME\) and name it play.bat.
-2. Open it with any text editor and paste the following code:
+1. download and move paly.dat to (C:\Users\YOUR_USERNAME\) 
+2. Open it with any text editor change "Rith" to your username everywhere:
 
+cmd will acess the .bat file through this 
 ```
-@echo off
-yt-dlp "ytsearch1:%*" -f ba --js-runtimes node -o - | "%USERPROFILE%\scoop\apps\mplayer\current\mplayer.exe" -cache 8192 -
+(C:\Users\YOUR_USERNAME\)
 ```
+authorized location
+
+    you are DONE!
+
+
 ## How to Use It
 
 Open your terminal from anywhere and run the script by typing play followed by any song name, artist, or album keyword:
