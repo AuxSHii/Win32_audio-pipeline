@@ -3,6 +3,8 @@
 An ultra-lightweight, high-performance terminal script designed to search and stream YouTube audio directly from the command line without opening a heavy web browser. 
 
 This project is fully optimized for **legacy 32-bit (x86) Windows systems** and low-spec PCs, bypassing modern GPU acceleration bugs (like Vulkan crashes) by piping raw audio streams directly into a legacy media engine.
+<img width="894" height="203" alt="track" src="https://github.com/user-attachments/assets/6e8c27bf-1e09-4372-a57b-03b6463b7065" />
+<img width="943" height="360" alt="tracks earch" src="https://github.com/user-attachments/assets/d8717c7c-ec92-4246-8198-bc910f2dfc72" />
 
 ## ✨ Features
 * **Zero Disk Waste:** Streams audio directly through system memory (RAM). No audio files are downloaded to your hard drive.
